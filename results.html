@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+
+    
+
+    <script src="function.js"></script>
+    <script src="sqlarray.js"></script>
+    <script src="vendor/Faker.js"></script>
+    <script>
+
+        var people = [];
+        for(var p=0; p<100; p+=1) {
+            var person = {};
+            person.FirstName = Faker.Name.firstName();
+            person.LastName = Faker.Name.lastName();
+            person.PhoneNumber = Faker.PhoneNumber.phoneNumber();
+            person.Email = Faker.Internet.email();
+            person.Id = p;
+            people.push(person);
+        }
+        
+        var addresses = [];
+        for(var a=0; a<100; a+=1) {
+            var address = {};
+            address.PersonId = a;
+            address.StreetName = Faker.Address.streetName();
+            address.City = Faker.Address.city();
+            address.State = Faker.Address.usState();
+            address.ZipCode = Faker.Address.zipCode();
+            addresses.push(address);
+        }
+        
+        
+        var peopleQuery = query(people).select('FirstName');    
+        console.log(peopleQuery.run());
+        console.log(JSON.stringify(peopleQuery.run()));
+    </script>    
+        
+        
+    </body>
+</html>
