@@ -35,10 +35,17 @@
             addresses.push(address);
         }
         
+        console.log(JSON.stringify(people));
+        var peopleQuery1 = query(people).select('FirstName');    
+        var result1 = peopleQuery1.run();
+        console.log(result1);
+        console.log(JSON.stringify(result1));
         
-        var peopleQuery = query(people).select('FirstName');    
-        console.log(peopleQuery.run());
-        console.log(JSON.stringify(peopleQuery.run()));
+        var peopleQuery2 = query(people).select('FirstName', 'LastName');    
+        var result2 = peopleQuery2.run();
+        console.log(result2);
+        console.log(JSON.stringify(result2));
+        
     </script>    
         
         

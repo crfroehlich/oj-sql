@@ -1,14 +1,14 @@
 function each(obj, onSuccess, recursive) {
-    if (obj) {
+    if (obj && (typeof obj === 'object' || typeof obj === 'array')) {
         Object.keys(obj).forEach(function(key) {
             var val = obj[key];
-            if (onSuccess) {
+            if (onSuccess && val && key) {
                 var quit = onSuccess(val, key);
                 if (false === quit) {
                     return false;
                 }
             }
-            if (true === recursive && (typeof val === 'object' || typeof val === 'array')) {
+            if (true === recursive) {
                 each(val, onSuccess, true);
             }
         });
@@ -20,7 +20,7 @@ function curryLeft(func) {
    var slice = Array.prototype.slice;
    var args = slice.call(arguments, 1);
    return function() {
-       return func.apply(this, args.concat(args, slice.call(arguments, 0)));
+       return func.apply(this, args.concat(slice.call(arguments, 0)));
 
    }
 }
